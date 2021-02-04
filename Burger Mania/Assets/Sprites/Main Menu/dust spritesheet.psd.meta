@@ -1,0 +1,557 @@
+fileFormatVersion: 2
+guid: b8af71e560e3ce147a4e5528956530c5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4306609516604499477
+    second: dust spritesheet_0
+  - first:
+      213: -3003975050555791244
+    second: dust spritesheet_1
+  - first:
+      213: 1323095736224962321
+    second: dust spritesheet_2
+  - first:
+      213: -467898102571942648
+    second: dust spritesheet_3
+  - first:
+      213: -2862821380391402927
+    second: dust spritesheet_4
+  - first:
+      213: 5711978883530190556
+    second: dust spritesheet_5
+  - first:
+      213: 1225074664925867940
+    second: dust spritesheet_6
+  - first:
+      213: 8294234967955027994
+    second: dust spritesheet_7
+  - first:
+      213: -5641404830704413157
+    second: dust spritesheet_8
+  - first:
+      213: 8655271394652902303
+    second: dust spritesheet_9
+  - first:
+      213: -1761843982903930842
+    second: dust spritesheet_10
+  - first:
+      213: -7716963389000005342
+    second: dust spritesheet_11
+  - first:
+      213: 5901577868346872588
+    second: dust spritesheet_12
+  - first:
+      213: 378205111576811244
+    second: dust spritesheet_13
+  - first:
+      213: 8356284398569741974
+    second: dust spritesheet_14
+  - first:
+      213: -3666199268970038103
+    second: dust spritesheet_15
+  - first:
+      213: 8263006029308253287
+    second: dust spritesheet_16
+  - first:
+      213: 5166828647984692009
+    second: dust spritesheet_17
+  - first:
+      213: 3721623695294110290
+    second: dust spritesheet_18
+  - first:
+      213: 1432421449848539794
+    second: dust spritesheet_19
+  - first:
+      213: 4028587240269269952
+    second: dust spritesheet_20
+  - first:
+      213: 3293533506685521171
+    second: dust spritesheet_21
+  - first:
+      213: 4580920956871433278
+    second: dust spritesheet_22
+  - first:
+      213: 2576107814896905373
+    second: dust spritesheet_23
+  - first:
+      213: -1322015135429846706
+    second: dust spritesheet_24
+  - first:
+      213: 1132635662055026795
+    second: dust spritesheet_25
+  - first:
+      213: 3511928786234771523
+    second: dust spritesheet_26
+  - first:
+      213: 5862659292805776340
+    second: dust spritesheet_27
+  - first:
+      213: 7467069053374962485
+    second: dust spritesheet_28
+  - first:
+      213: -7359186229779684320
+    second: dust spritesheet_29
+  - first:
+      213: -458641247640089900
+    second: dust spritesheet_30
+  - first:
+      213: 5779955227344216685
+    second: dust spritesheet_31
+  - first:
+      213: -3529031502870037337
+    second: dust spritesheet_32
+  - first:
+      213: 4298896303481143995
+    second: dust spritesheet_33
+  - first:
+      213: -4745491955196498673
+    second: dust spritesheet_34
+  - first:
+      213: 4953538853635127533
+    second: dust spritesheet_35
+  - first:
+      213: -8375625123071230687
+    second: dust spritesheet_36
+  - first:
+      213: -5108596905075596923
+    second: dust spritesheet_37
+  - first:
+      213: -7736455542840751876
+    second: dust spritesheet_38
+  - first:
+      213: -262670778057824193
+    second: dust spritesheet_39
+  - first:
+      213: 5641816415106195256
+    second: dust spritesheet_40
+  - first:
+      213: -4752479656790028153
+    second: dust spritesheet_41
+  - first:
+      213: -262303195564509608
+    second: dust spritesheet_42
+  - first:
+      213: -889287600794151045
+    second: dust spritesheet_43
+  - first:
+      213: -4638366047956964026
+    second: dust spritesheet_44
+  - first:
+      213: -7918189930888241550
+    second: dust spritesheet_45
+  - first:
+      213: -5198724072782208727
+    second: dust spritesheet_46
+  - first:
+      213: 3909848951409031049
+    second: dust spritesheet_47
+  - first:
+      213: 8643552041085285979
+    second: dust spritesheet_48
+  - first:
+      213: -4385889639140068066
+    second: dust spritesheet_49
+  - first:
+      213: -7792344648597550934
+    second: dust spritesheet_50
+  - first:
+      213: -3265042607035739981
+    second: dust spritesheet_51
+  - first:
+      213: 2444646316297813436
+    second: dust spritesheet_0
+  - first:
+      213: -6846248941695036617
+    second: dust spritesheet_1
+  - first:
+      213: -6408788380769191620
+    second: dust spritesheet_2
+  - first:
+      213: 9069979800100003678
+    second: dust spritesheet_3
+  - first:
+      213: 8580877601633727071
+    second: dust spritesheet_4
+  - first:
+      213: 6246501260017242668
+    second: dust spritesheet_5
+  - first:
+      213: -5156397098966510121
+    second: dust spritesheet_6
+  - first:
+      213: -8815631991171660779
+    second: dust spritesheet_7
+  - first:
+      213: -3895394555978909770
+    second: dust spritesheet_8
+  - first:
+      213: 8187925928857220838
+    second: dust spritesheet_9
+  - first:
+      213: 7681800585169766920
+    second: dust spritesheet_10
+  - first:
+      213: -411830334004788266
+    second: dust spritesheet_11
+  - first:
+      213: -4796512573900060455
+    second: dust spritesheet_12
+  - first:
+      213: -3439065980982044164
+    second: dust spritesheet_13
+  - first:
+      213: 6310326334869801365
+    second: dust spritesheet_14
+  - first:
+      213: -2971593226611388732
+    second: dust spritesheet_15
+  - first:
+      213: -8693226152381948198
+    second: dust spritesheet_16
+  - first:
+      213: 3932154263179378137
+    second: dust spritesheet_17
+  - first:
+      213: 1515832513333588555
+    second: dust spritesheet_18
+  - first:
+      213: 3245096991676841614
+    second: dust spritesheet_19
+  - first:
+      213: 6943824123014520037
+    second: dust spritesheet_20
+  - first:
+      213: 648594811625608225
+    second: dust spritesheet_21
+  - first:
+      213: 6824677430360084064
+    second: dust spritesheet_22
+  - first:
+      213: -7225011014769057889
+    second: dust spritesheet_23
+  - first:
+      213: 7212330347375423111
+    second: dust spritesheet_24
+  - first:
+      213: 1736301531131973561
+    second: dust spritesheet_25
+  - first:
+      213: -4836429228757337174
+    second: dust spritesheet_26
+  - first:
+      213: -3730068221867655971
+    second: dust spritesheet_27
+  - first:
+      213: 8422188747389694053
+    second: dust spritesheet_28
+  - first:
+      213: -9134983826536202736
+    second: dust spritesheet_29
+  - first:
+      213: 8658022841536526402
+    second: dust spritesheet_30
+  - first:
+      213: -1552684748361542068
+    second: dust spritesheet_31
+  - first:
+      213: -8761630450978008676
+    second: dust spritesheet_32
+  - first:
+      213: -3648675165174879943
+    second: dust spritesheet_33
+  - first:
+      213: 586153495599057105
+    second: dust spritesheet_34
+  - first:
+      213: -1571816686500286050
+    second: dust spritesheet_35
+  - first:
+      213: 1577989895980397736
+    second: dust spritesheet_36
+  - first:
+      213: 7853350253746341479
+    second: dust spritesheet_37
+  - first:
+      213: 4549270270528919476
+    second: dust spritesheet_38
+  - first:
+      213: -7741531431193054752
+    second: dust spritesheet_39
+  - first:
+      213: -1177065858810258071
+    second: dust spritesheet_40
+  - first:
+      213: 8565590618834509857
+    second: dust spritesheet_41
+  - first:
+      213: -6612312203377188504
+    second: dust spritesheet_42
+  - first:
+      213: -2863219398980566398
+    second: dust spritesheet_43
+  - first:
+      213: -6182222868955052339
+    second: dust spritesheet_44
+  - first:
+      213: 484526239650386144
+    second: dust spritesheet_45
+  - first:
+      213: 8905361051754778356
+    second: dust spritesheet_46
+  - first:
+      213: 6530269933129360001
+    second: dust spritesheet_47
+  - first:
+      213: 27320010942344898
+    second: dust spritesheet_48
+  - first:
+      213: -2355874026273253669
+    second: dust spritesheet_49
+  - first:
+      213: 2801217471886424499
+    second: dust spritesheet_50
+  - first:
+      213: 6583886190834454416
+    second: dust spritesheet_51
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dust spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 204.8
+        width: 128
+        height: 51.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbdf5645fd02de120800000000000000
+      internalID: 2444646316297813436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dust spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 110
+        width: 128
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c39f9934ce86f07a0800000000000000
+      internalID: -6408788380769191620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dust spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 128
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f52fb7a17b6651770800000000000000
+      internalID: 8580877601633727071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dust spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 128
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4786c757b9cbf46d0800000000000000
+      internalID: -3003975050555791244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dust spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 58
+        width: 128
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80dbe1d9721b189f0800000000000000
+      internalID: -467898102571942648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
