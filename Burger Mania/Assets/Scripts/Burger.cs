@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Burger : MonoBehaviour
+public class Burger
 {
     public bool Tomato { get; set; }
     public bool Cheese { get; set; }

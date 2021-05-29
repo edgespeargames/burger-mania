@@ -16,7 +16,11 @@ public class GameSceneManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> mealObjects = new List<GameObject>(); //The actual instantiated meal objects in the scene
 
-    [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private List<Coroutine> coroutines = new List<Coroutine>();
+
+    [SerializeField] private GameObject gameOverMenu; //The game over menu gameobject
+
+    private bool isMoving = false;
 
     #region Singleton
     private static GameSceneManager _instance;
@@ -45,6 +49,30 @@ public class GameSceneManager : MonoBehaviour
             "Burger Type: " + targetMeals[i].Burger.ToString());
     }
     #endregion
+
+    private void Update()
+    {
+        #region DebugDestroyMeals
+        //Destroy Meal 1 with 1 key
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            myMeal = targetMeals[0];
+            MealMatch();
+        }
+        //Destroy Meal 2 with 2 key
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            myMeal = targetMeals[1];
+            MealMatch();
+        }
+        //Destroy Meal 3 with 3 key
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            myMeal = targetMeals[2];
+            MealMatch();
+        }
+        #endregion
+    }
 
     void OnEnable()
     {
@@ -102,22 +130,21 @@ public class GameSceneManager : MonoBehaviour
     //Reset the player's custom burger to default
     public void MealMatch()
     {
-        myMeal = new Meal 
-        { 
-            burger = myBurger.GetComponent<MyBurgerProperties>().GetBurgerType(),
-            Fries = MyMeal.myFries,
-            Drink = MyMeal.myDrink 
-        }; //Object Initializer
+        //myMeal = new Meal 
+        //{ 
+        //    burger = myBurger.GetComponent<MyBurgerProperties>().GetBurgerType(),
+        //    Fries = MyMeal.myFries,
+        //    Drink = MyMeal.myDrink 
+        //}; //Object Initializer
 
         for (int i = 0; i < mealObjects.Count; i++)
         {
-            if (myMeal.Equals(targetMeals[i]))
+            if (myMeal.Equals(targetMeals[i]) && !isMoving)
             {
-                Destroy(mealObjects[i].gameObject);
-
                 ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
                 AudioManager.instance.Play("Cash");
                 MealRotation(i);
+                
 
                 GetComponent<MyMeal>().ResetMeal();
                 return;
@@ -133,7 +160,7 @@ public class GameSceneManager : MonoBehaviour
     {
         for (int i = 0; i < mealObjects.Count; i++)
         {
-            if (mealObjects[i].gameObject == destroyedObject)
+            if (mealObjects[i] == destroyedObject)
             {
                 ScoreManager.Instance.ModifyScore(-mealObjects[i].GetComponent<MealScore>().GetScore());
                 AudioManager.instance.Play("Whistle");
@@ -150,20 +177,24 @@ public class GameSceneManager : MonoBehaviour
     //Runs 'DisplayMeal' to add and instantiate a new target meal at the last/right-most spawn point
     private void MealRotation(int index)
     {
+        Destroy(mealObjects[index]);
         mealObjects.RemoveAt(index);
 
-        for (int j = index; j < mealObjects.Count; j++)
+        for (int i = index; i < mealObjects.Count; i++)
         {
-            StartCoroutine(MoveObject(mealObjects[j].gameObject,
-                mealObjects[j].transform.position,
-                spawnPoints[j].transform.position,
-                0.3f));
+            StartCoroutine(MoveObject(
+                mealObjects[i],
+                mealObjects[i].transform.position,
+                spawnPoints[i].transform.position,
+                0.2f));
+            //mealObjects[i].transform.position = spawnPoints[i].transform.position;
         }
+        
         targetMeals.RemoveAt(index);
 
         ScoreManager.Instance.UpdateScoreText();
 
-        DisplayMeal(2);
+        DisplayMeal(2); // Create Meal at position [2] as the others will be moved along
     }
 
     //Movement animation coroutine for objects
@@ -174,9 +205,11 @@ public class GameSceneManager : MonoBehaviour
         while (obj != null && (Vector2)obj.transform.position != target)
         {
             obj.transform.position = Vector2.Lerp(source, target, ((Time.time - startTime) / overTime));
+            isMoving = true;
             yield return null;
         }
-        transform.position = target;
+        obj.transform.position = target;
+        isMoving = false;
     }
 
     void ResetScene()
