@@ -54,7 +54,7 @@ public class MyMeal : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameSceneManager.Instance.MealMatch(1);
+            GameSceneManager.Instance.MealMatch();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

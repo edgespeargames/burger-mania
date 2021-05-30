@@ -52,29 +52,29 @@ public class GameSceneManager : MonoBehaviour
     }
     #endregion
 
-    private void Update()
-    {
-        #region DebugDestroyMeals
-        //Destroy Meal 1 with 1 key
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            myMeal = targetMeals[0];
-            MealMatch(0);
-        }
-        //Destroy Meal 2 with 2 key
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            myMeal = targetMeals[1];
-            MealMatch(1);
-        }
-        //Destroy Meal 3 with 3 key
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            myMeal = targetMeals[2];
-            MealMatch(2);
-        }
-        #endregion
-    }
+    //private void Update()
+    //{
+    //    #region DebugDestroyMeals
+    //    //Destroy Meal 1 with 1 key
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        myMeal = targetMeals[0];
+    //        MealMatch(0);
+    //    }
+    //    //Destroy Meal 2 with 2 key
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        myMeal = targetMeals[1];
+    //        MealMatch(1);
+    //    }
+    //    //Destroy Meal 3 with 3 key
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        myMeal = targetMeals[2];
+    //        MealMatch(2);
+    //    }
+    //    #endregion
+    //}
 
     void OnEnable()
     {
@@ -119,7 +119,6 @@ public class GameSceneManager : MonoBehaviour
         if (targetMeals[index].Drink)
             tempBurger.GetComponent<TargetMealCreator>().CreateDrink();
         tempBurger.GetComponent<BurgerProperties>().burger = targetMeals[index].burger;
-        //tempBurger.GetComponent<TargetMealCreator>().iD = index; //for identification purposes
         mealObjects.Add(tempBurger);
 
         AudioManager.instance.Play("BurgerWoosh");
@@ -131,34 +130,35 @@ public class GameSceneManager : MonoBehaviour
     //If there is a match then destroy the matching meal, call the method 'MealRotation'
     //Increment the player's score based on the value of the meal matched
     //Reset the player's custom burger to default
-    public void MealMatch(int i)
+    public void MealMatch(int index)
     {
-        //myMeal = new Meal 
-        //{ 
-        //    burger = myBurger.GetComponent<MyBurgerProperties>().GetBurgerType(),
-        //    Fries = MyMeal.myFries,
-        //    Drink = MyMeal.myDrink 
-        //}; //Object Initializer
+        myMeal = new Meal
+        {
+            burger = myBurger.GetComponent<MyBurgerProperties>().GetBurgerType(),
+            Fries = MyMeal.myFries,
+            Drink = MyMeal.myDrink
+        }; //Object Initializer
 
-        ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
-        AudioManager.instance.Play("Cash");
-        print("Matched with " + i);
-        MealRotation(i);
-        GetComponent<MyMeal>().ResetMeal();
-
-        //for (int i = 0; i < mealObjects.Count; i++)
-        //{
-        //    if (myMeal.Equals(targetMeals[i]))
-        //    {
-        ////        ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
-        ////        AudioManager.instance.Play("Cash");
-        ////        print("Matched with " + i);
-        ////        MealRotation(i);
-        ////        GetComponent<MyMeal>().ResetMeal();
-        //        return;
-        //    }
-        //}
+        for (int i = 0; i < mealObjects.Count; i++)
+        {
+            if (myMeal.Equals(targetMeals[i]))
+            {
+                ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
+                AudioManager.instance.Play("Cash");
+                MealRotation(i);
+                GetComponent<MyMeal>().ResetMeal();
+                return;
+            }
+        }
         AudioManager.instance.Play("Wrong"); //No match
+
+        #region Testing
+        //ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
+        //AudioManager.instance.Play("Cash");
+        //print("Matched with " + index);
+        //MealRotation(index);
+        //GetComponent<MyMeal>().ResetMeal();
+        #endregion
     }
 
     //Called when a target burger's Timer runs out
@@ -189,15 +189,15 @@ public class GameSceneManager : MonoBehaviour
         Destroy(mealObjects[index]);
         mealObjects.RemoveAt(index);
         targetMeals.RemoveAt(index);
-        if((currentIndex < prevIndex || currentIndex == prevIndex) && isMoving)
+
+        if ((currentIndex < prevIndex || currentIndex == prevIndex) && isMoving)
         {
             for (int i = 0; i < coroutines.Count; i++)
                 StopCoroutine(coroutines[i]);
         }
-        
+
         for (int i = index; i < mealObjects.Count; i++)
         {
-            
             coroutines.Add(StartCoroutine(MoveObject(
                 mealObjects[i],
                 mealObjects[i].transform.position,
@@ -219,7 +219,7 @@ public class GameSceneManager : MonoBehaviour
             obj.transform.position = Vector2.Lerp(source, target, ((Time.time - startTime) / overTime));
             yield return null;
         }
-        if(obj != null)
+        if (obj != null)
             obj.transform.position = target;
         coroutines.Clear();
         isMoving = false;
