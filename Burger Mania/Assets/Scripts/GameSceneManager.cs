@@ -130,7 +130,7 @@ public class GameSceneManager : MonoBehaviour
     //If there is a match then destroy the matching meal, call the method 'MealRotation'
     //Increment the player's score based on the value of the meal matched
     //Reset the player's custom burger to default
-    public void MealMatch(int index)
+    public void MealMatch()
     {
         myMeal = new Meal
         {
