@@ -17,6 +17,8 @@ public class TargetMealCreator : MonoBehaviour
 
     [SerializeField] private GameObject popUpText;
 
+    public int iD;
+
     private void Start()
     {
         localTimer = Instantiate(timer, transform.position, Quaternion.identity);

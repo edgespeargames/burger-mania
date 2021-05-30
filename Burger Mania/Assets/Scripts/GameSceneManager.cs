@@ -20,10 +20,12 @@ public class GameSceneManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverMenu; //The game over menu gameobject
 
-    private bool isMoving = false;
+    private bool isMoving;
 
     #region Singleton
     private static GameSceneManager _instance;
+    private int currentIndex;
+    private int prevIndex;
 
     public static GameSceneManager Instance { get { return _instance; } }
 
@@ -57,19 +59,19 @@ public class GameSceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             myMeal = targetMeals[0];
-            MealMatch();
+            MealMatch(0);
         }
         //Destroy Meal 2 with 2 key
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             myMeal = targetMeals[1];
-            MealMatch();
+            MealMatch(1);
         }
         //Destroy Meal 3 with 3 key
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             myMeal = targetMeals[2];
-            MealMatch();
+            MealMatch(2);
         }
         #endregion
     }
@@ -117,6 +119,7 @@ public class GameSceneManager : MonoBehaviour
         if (targetMeals[index].Drink)
             tempBurger.GetComponent<TargetMealCreator>().CreateDrink();
         tempBurger.GetComponent<BurgerProperties>().burger = targetMeals[index].burger;
+        //tempBurger.GetComponent<TargetMealCreator>().iD = index; //for identification purposes
         mealObjects.Add(tempBurger);
 
         AudioManager.instance.Play("BurgerWoosh");
@@ -128,7 +131,7 @@ public class GameSceneManager : MonoBehaviour
     //If there is a match then destroy the matching meal, call the method 'MealRotation'
     //Increment the player's score based on the value of the meal matched
     //Reset the player's custom burger to default
-    public void MealMatch()
+    public void MealMatch(int i)
     {
         //myMeal = new Meal 
         //{ 
@@ -137,19 +140,24 @@ public class GameSceneManager : MonoBehaviour
         //    Drink = MyMeal.myDrink 
         //}; //Object Initializer
 
-        for (int i = 0; i < mealObjects.Count; i++)
-        {
-            if (myMeal.Equals(targetMeals[i]) && !isMoving)
-            {
-                ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
-                AudioManager.instance.Play("Cash");
-                MealRotation(i);
-                
+        ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
+        AudioManager.instance.Play("Cash");
+        print("Matched with " + i);
+        MealRotation(i);
+        GetComponent<MyMeal>().ResetMeal();
 
-                GetComponent<MyMeal>().ResetMeal();
-                return;
-            }
-        }
+        //for (int i = 0; i < mealObjects.Count; i++)
+        //{
+        //    if (myMeal.Equals(targetMeals[i]))
+        //    {
+        ////        ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
+        ////        AudioManager.instance.Play("Cash");
+        ////        print("Matched with " + i);
+        ////        MealRotation(i);
+        ////        GetComponent<MyMeal>().ResetMeal();
+        //        return;
+        //    }
+        //}
         AudioManager.instance.Play("Wrong"); //No match
     }
 
@@ -165,7 +173,7 @@ public class GameSceneManager : MonoBehaviour
                 ScoreManager.Instance.ModifyScore(-mealObjects[i].GetComponent<MealScore>().GetScore());
                 AudioManager.instance.Play("Whistle");
                 MealRotation(i);
-                
+
                 return;
             }
         }
@@ -177,38 +185,43 @@ public class GameSceneManager : MonoBehaviour
     //Runs 'DisplayMeal' to add and instantiate a new target meal at the last/right-most spawn point
     private void MealRotation(int index)
     {
+        currentIndex = index;
         Destroy(mealObjects[index]);
         mealObjects.RemoveAt(index);
-
+        targetMeals.RemoveAt(index);
+        if((currentIndex < prevIndex || currentIndex == prevIndex) && isMoving)
+        {
+            for (int i = 0; i < coroutines.Count; i++)
+                StopCoroutine(coroutines[i]);
+        }
+        
         for (int i = index; i < mealObjects.Count; i++)
         {
-            StartCoroutine(MoveObject(
+            
+            coroutines.Add(StartCoroutine(MoveObject(
                 mealObjects[i],
                 mealObjects[i].transform.position,
                 spawnPoints[i].transform.position,
-                0.2f));
-            //mealObjects[i].transform.position = spawnPoints[i].transform.position;
+                0.3f)));
         }
-        
-        targetMeals.RemoveAt(index);
-
         ScoreManager.Instance.UpdateScoreText();
-
-        DisplayMeal(2); // Create Meal at position [2] as the others will be moved along
+        DisplayMeal(2); // Create Meal at position [2] as the others will be moved along or to replace the third meal being matched
+        prevIndex = currentIndex;
     }
 
     //Movement animation coroutine for objects
     IEnumerator MoveObject(GameObject obj, Vector2 source, Vector2 target, float overTime)
     {
         float startTime = Time.time;
-
+        isMoving = true;
         while (obj != null && (Vector2)obj.transform.position != target)
         {
             obj.transform.position = Vector2.Lerp(source, target, ((Time.time - startTime) / overTime));
-            isMoving = true;
             yield return null;
         }
-        obj.transform.position = target;
+        if(obj != null)
+            obj.transform.position = target;
+        coroutines.Clear();
         isMoving = false;
     }
 
@@ -216,7 +229,7 @@ public class GameSceneManager : MonoBehaviour
     {
         Destroy(myBurger);
         GetComponent<MyMeal>().ResetMeal();
-        foreach(GameObject meal in mealObjects)
+        foreach (GameObject meal in mealObjects)
         {
             Destroy(meal);
         }
@@ -233,7 +246,7 @@ public class GameSceneManager : MonoBehaviour
             AudioManager.instance.Play("Win");
         else
             AudioManager.instance.Play("Fail");
-        
+
         gameOverMenu.SetActive(true);
         gameOverMenu.gameObject.GetComponent<GameOverMenu>().SetScore(ScoreManager.Instance.GetTotalScore());
         ScoreManager.Instance.ResetScore();
