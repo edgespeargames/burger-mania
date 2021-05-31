@@ -16,6 +16,7 @@ public class BurgerProperties : MonoBehaviour
         SetScore();
     }
 
+    // Set the value of the burger based on its ingredients
     private void SetScore()
     {
         if(burger.Tomato && burger.Cheese)
@@ -26,6 +27,7 @@ public class BurgerProperties : MonoBehaviour
             GetComponent<MealScore>().AddToScore(1);
     }
 
+    // Set the game object's sprite based on its ingredients
     private void SetSprite()
     {
         if (burger.Tomato && burger.Cheese)

@@ -22,10 +22,11 @@ public class GameSceneManager : MonoBehaviour
 
     private bool isMoving;
 
-    #region Singleton
-    private static GameSceneManager _instance;
     private int currentIndex;
     private int prevIndex;
+
+    #region Singleton
+    private static GameSceneManager _instance;
 
     public static GameSceneManager Instance { get { return _instance; } }
 
@@ -130,7 +131,7 @@ public class GameSceneManager : MonoBehaviour
     //If there is a match then destroy the matching meal, call the method 'MealRotation'
     //Increment the player's score based on the value of the meal matched
     //Reset the player's custom burger to default
-    public void MealMatch()
+    public void MealMatch(int index)
     {
         myMeal = new Meal
         {
@@ -152,13 +153,13 @@ public class GameSceneManager : MonoBehaviour
         }
         AudioManager.instance.Play("Wrong"); //No match
 
-        #region Testing
-        //ScoreManager.Instance.ModifyScore(mealObjects[i].GetComponent<MealScore>().GetScore());
+        //#region Testing
+        //ScoreManager.Instance.ModifyScore(mealObjects[index].GetComponent<MealScore>().GetScore());
         //AudioManager.instance.Play("Cash");
         //print("Matched with " + index);
         //MealRotation(index);
         //GetComponent<MyMeal>().ResetMeal();
-        #endregion
+        //#endregion
     }
 
     //Called when a target burger's Timer runs out
@@ -189,7 +190,7 @@ public class GameSceneManager : MonoBehaviour
         Destroy(mealObjects[index]);
         mealObjects.RemoveAt(index);
         targetMeals.RemoveAt(index);
-
+        
         if ((currentIndex < prevIndex || currentIndex == prevIndex) && isMoving)
         {
             for (int i = 0; i < coroutines.Count; i++)

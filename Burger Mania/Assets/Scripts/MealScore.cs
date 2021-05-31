@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// Basic score class for meals
 using UnityEngine;
-using UnityEngine.UI;
-
 public class MealScore : MonoBehaviour
 {
     private int mealScore;

@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    public Sound[] sounds; //Array of sounds
 
-    public bool mute;
+    public bool mute; //Toggle mute
 
-    public static AudioManager instance;
+    public static AudioManager instance; //Singleton
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        //Assign an audio source component to each audio clip and set the clip, volume, pitch, loop and mute settings
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -36,6 +37,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Start muted or unmuted depending on the last state the mute variable was saved
     private void Start()
     {
         SaveSystem.LoadMute();
@@ -43,6 +45,7 @@ public class AudioManager : MonoBehaviour
         SetMute();
     }
 
+    //Return whether the sound passed as an argument is currently playing
     public bool IsPlaying(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -52,6 +55,7 @@ public class AudioManager : MonoBehaviour
         return s.source.isPlaying;
     }
 
+    //Fade all sounds down to volume 0
     public void FadeAll()
     {
         foreach (Sound s in sounds)
@@ -60,6 +64,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Mute all sounds if mute variable is true, otherwise unmute
     public void SetMute()
     {
         foreach (Sound s in sounds)
@@ -75,6 +80,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Helper method to toggle the mute variable, 
+    //mute or unmute all sounds,
+    //update the mute UI image,
+    //Save the current state of whether muted or note
     public void MuteToggle()
     {
         mute = !mute;
@@ -83,6 +92,7 @@ public class AudioManager : MonoBehaviour
         SaveSystem.SaveMute();
     }
 
+    //Play the sound that is passed as an argument
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -91,6 +101,8 @@ public class AudioManager : MonoBehaviour
 
         s.source.Play();
     }
+
+    //Play the sound passed as an argument only once
     public void PlayOnce(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -100,6 +112,7 @@ public class AudioManager : MonoBehaviour
         s.source.PlayOneShot(s.clip);
     }
 
+    //Stop playing the sound passed as an argument
     public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -109,6 +122,7 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    //Pause the sound passed as an argument
     public void Pause(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -118,6 +132,7 @@ public class AudioManager : MonoBehaviour
         s.source.Pause();
     }
 
+    //Resume the sound passed as an argument
     public void Resume(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -127,6 +142,7 @@ public class AudioManager : MonoBehaviour
         s.source.UnPause();
     }
 
+    //Fade out the sound passed as an argument
     public void FadeOut(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -136,6 +152,7 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(Fade(s.source));
     }
 
+    //Coroutine to fade out the audio source passed through the FadeOut method
     IEnumerator Fade(AudioSource source)
     {
         while (source.volume > 0)

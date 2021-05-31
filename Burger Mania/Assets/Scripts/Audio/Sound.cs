@@ -7,18 +7,18 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    public string name;
-    public AudioClip clip;
+    public string name; //name of the sound
+    public AudioClip clip; //audioclip of the sound
 
     [Range(0f, 1f)]
-    public float volume;
+    public float volume; //volume slider, min 0 max 1
     [Range(.1f, 3f)]
-    public float pitch;
+    public float pitch; //pitch slider, min .1 max 3
 
-    public bool loop;
+    public bool loop; //loop - true or false
 
-    public bool mute;
+    public bool mute; //mute - true or false
 
     [HideInInspector]
-    public AudioSource source;
+    public AudioSource source; //Audiosource
 }

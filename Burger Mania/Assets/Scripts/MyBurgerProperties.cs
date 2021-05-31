@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+// Class for the properties of the player's burger
+// Could potentially be implemented as a sub class of an abstract class burgerproperties and as a sibling of burger properties.
 public class MyBurgerProperties : MonoBehaviour
 {
     public Burger Burger { get; set; }
@@ -15,6 +17,7 @@ public class MyBurgerProperties : MonoBehaviour
         SetSprite();
     }
 
+    // Set the game object's sprite based on its ingredients
     void SetSprite()
     {
         if (MyMeal.tomatoOn && MyMeal.cheeseOn)
@@ -27,6 +30,7 @@ public class MyBurgerProperties : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().sprite = burgerSprite;
     }
 
+    // Returns a new Burger instance with the properties defined by its ingredients
     public Burger GetBurgerType()
     {
         Burger tempBurger = new Burger();

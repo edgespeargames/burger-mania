@@ -23,10 +23,11 @@ public class GlobalTimer : MonoBehaviour
     }
     #endregion
 
-    private float timeLimit = 20f;
+    private float timeLimit = 20f; // Time limit for the game
 
-    [SerializeField] private Text timerText;
+    [SerializeField] private Text timerText; // The text that shows the amount of time left
 
+    // When the object this is attached to is enabled, begin the timer countdown coroutine
     void OnEnable()
     {
         timerText.text = timeLimit.ToString();
@@ -34,6 +35,7 @@ public class GlobalTimer : MonoBehaviour
         StartCoroutine(Countdown());
     }
 
+    // Reset the timer and disable the object this is attached to
     public void ResetTimer()
     {
         StopAllCoroutines();
@@ -42,6 +44,8 @@ public class GlobalTimer : MonoBehaviour
         enabled = false;
     }
 
+    // Countdown from the timeLimit value to 0
+    // Values below 4 appear in red text
     IEnumerator Countdown()
     {
         for(float i = timeLimit; i > 4; i--)

@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Transition : MonoBehaviour
 {
     private Animation anim;
 
-    // Start is called before the first frame update
     void Awake()
     {
         anim = this.gameObject.GetComponentInChildren<Animation>();
     }
 
+    // Play the fly_in animation
     public void FlyIn()
     {
         anim.Play("fly_in");

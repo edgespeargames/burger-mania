@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class HighScore : MonoBehaviour
 {
-    public static List<PlayerScore> highScoreList = new List<PlayerScore>();
+    public static List<PlayerScore> highScoreList = new List<PlayerScore>(); // List of PlayerScore instances
 
     public GameObject leftPanel;
     public GameObject rightPanel;
     public Text textPrefab;
 
+    // Creates a new PlayerScore instance with the newly entered name and score
+    // Adds it to the highsScoreList
     public static void AddScore(string newName, int newScore)
     {
         PlayerScore newPlayerScore = new PlayerScore
@@ -21,16 +23,19 @@ public class HighScore : MonoBehaviour
         highScoreList.Add(newPlayerScore);
     }
 
+    // Clears the highScoreList
     public static void ClearList()
     {
         highScoreList.Clear();
     }
 
+    // Returns the highScoreList of PlayerScore objects
     public static List<PlayerScore> GetList()
     {
         return highScoreList;
     }
 
+    // Remove text (highscores)
     private void ClearObjects(GameObject panel)
     {
         foreach (Transform text in panel.transform)
@@ -39,12 +44,16 @@ public class HighScore : MonoBehaviour
         }
     }
 
+    // Remove text from both panels
     public void ClearPanels()
     {
         ClearObjects(leftPanel);
         ClearObjects(rightPanel);
     }
 
+    // Clear both panels, 
+    // Sort the scores from high to low
+    // Instantiate text objects and assign them the values from the PlayerScore instances in the highScoreList
     public void ShowHighScores()
     {
         ClearPanels();
