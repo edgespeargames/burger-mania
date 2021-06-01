@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,12 +17,13 @@ public class TutorialMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        // Change text based on platform
 #if UNITY_STANDALONE || UNITY_WEBGL
         okText.text = "OK! \n (Enter)";
         menuText.text = "Main Menu \n (Esc)";
 #endif
     }
+
     void Start()
     {
         AudioManager.instance.Play("TutMusic");
@@ -32,6 +32,8 @@ public class TutorialMenu : MonoBehaviour
         okButton.onClick.AddListener(OkButton_onClick); //subscribe to the onClick event
         menuButton.onClick.AddListener(MenuButton_onClick);
     }
+
+    // Button Click Events below
 
     //Handle the onClick event
     public void OkButton_onClick()

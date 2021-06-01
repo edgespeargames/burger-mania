@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Class to toggle the visibility of the Desktop/WebGL helper UI
 public class ToggleDesktopUI : MonoBehaviour
 {
     [SerializeField] private GameObject desktopUI;
@@ -13,7 +12,5 @@ public class ToggleDesktopUI : MonoBehaviour
             desktopUI.SetActive(!desktopUI.activeSelf);
             SaveSystem.SaveUI();
         }
-            
-
     }
 }

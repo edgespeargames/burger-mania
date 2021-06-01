@@ -6,19 +6,21 @@ public class BirdFly : MonoBehaviour
 {
     Vector2 startPos;
 
-    Vector2 targetPosition = new Vector2(-500, 200);
+    Vector2 targetPosition = new Vector2(-500, 200); 
     float speed;
 
     Animator anim;
 
-    float timeLeft = 10f;
+    float timeLeft = 10f; // Time until object destroyed
 
+    // Set the startPos variable and begin countdown
     void OnEnable()
     {
         startPos = transform.position;
         StartCoroutine(Countdown());
     }
 
+    // Wait for 5 seconds and set the gameobject active
     IEnumerator Countdown()
     {
         yield return new WaitForSeconds(5f);
@@ -31,6 +33,10 @@ public class BirdFly : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    // Randomise the animation speed
+    // Randomise the movement speed
+    // Move the gameobject towards the target position
+    // Destroy when time runs out
     void Update()
     {
         anim.speed = Random.Range(1,2);

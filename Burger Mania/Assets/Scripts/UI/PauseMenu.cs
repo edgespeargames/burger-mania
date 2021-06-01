@@ -14,12 +14,14 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button okButton;
     [SerializeField] private Button menuButton;
 
+    // When the pause menu is enabled, timescale is set to 0 for the game
     private void OnEnable()
     {
         Time.timeScale = 0;
         AudioManager.instance.Pause("GameMusic");
     }
 
+    // Check if escape key is pressed to resume game (non-android only)
     void Update()
     {
 #if UNITY_STANDALONE || UNITY_WEBGL
@@ -29,6 +31,8 @@ public class PauseMenu : MonoBehaviour
         }
 #endif
     }
+
+    // Below are button click methods
 
     public void OnTutorialClicked()
     {

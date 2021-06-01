@@ -16,14 +16,14 @@ public class GameSceneManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> mealObjects = new List<GameObject>(); //The actual instantiated meal objects in the scene
 
-    [SerializeField] private List<Coroutine> coroutines = new List<Coroutine>();
+    [SerializeField] private List<Coroutine> coroutines = new List<Coroutine>(); // List of coroutines of MoveObject running
 
     [SerializeField] private GameObject gameOverMenu; //The game over menu gameobject
 
-    private bool isMoving;
+    private bool isMoving; // Is the MoveObject coroutine being called?
 
-    private int currentIndex;
-    private int prevIndex;
+    private int currentIndex; // The index of the current targetmeal being destroyed/matched
+    private int prevIndex; // The index of the last targetmeal that was destroyed/matched
 
     #region Singleton
     private static GameSceneManager _instance;
@@ -53,29 +53,29 @@ public class GameSceneManager : MonoBehaviour
     }
     #endregion
 
-    //private void Update()
-    //{
-    //    #region DebugDestroyMeals
-    //    //Destroy Meal 1 with 1 key
-    //    if (Input.GetKeyDown(KeyCode.Alpha1))
-    //    {
-    //        myMeal = targetMeals[0];
-    //        MealMatch(0);
-    //    }
-    //    //Destroy Meal 2 with 2 key
-    //    if (Input.GetKeyDown(KeyCode.Alpha2))
-    //    {
-    //        myMeal = targetMeals[1];
-    //        MealMatch(1);
-    //    }
-    //    //Destroy Meal 3 with 3 key
-    //    if (Input.GetKeyDown(KeyCode.Alpha3))
-    //    {
-    //        myMeal = targetMeals[2];
-    //        MealMatch(2);
-    //    }
-    //    #endregion
-    //}
+    private void Update()
+    {
+        #region DebugDestroyMeals
+        //Destroy Meal 1 with 1 key
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            myMeal = targetMeals[0];
+            MealMatch(0);
+        }
+        //Destroy Meal 2 with 2 key
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            myMeal = targetMeals[1];
+            MealMatch(1);
+        }
+        //Destroy Meal 3 with 3 key
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            myMeal = targetMeals[2];
+            MealMatch(2);
+        }
+        #endregion
+    }
 
     void OnEnable()
     {
@@ -99,7 +99,7 @@ public class GameSceneManager : MonoBehaviour
         for (int i = 0; i < maxMeals; i++)
         {
             DisplayMeal(i);
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -133,12 +133,12 @@ public class GameSceneManager : MonoBehaviour
     //Reset the player's custom burger to default
     public void MealMatch(int index)
     {
-        myMeal = new Meal
-        {
-            burger = myBurger.GetComponent<MyBurgerProperties>().GetBurgerType(),
-            Fries = MyMeal.myFries,
-            Drink = MyMeal.myDrink
-        }; //Object Initializer
+        //myMeal = new Meal
+        //{
+        //    burger = myBurger.GetComponent<MyBurgerProperties>().GetBurgerType(),
+        //    Fries = MyMeal.myFries,
+        //    Drink = MyMeal.myDrink
+        //}; //Object Initializer
 
         for (int i = 0; i < mealObjects.Count; i++)
         {
@@ -153,13 +153,13 @@ public class GameSceneManager : MonoBehaviour
         }
         AudioManager.instance.Play("Wrong"); //No match
 
-        //#region Testing
-        //ScoreManager.Instance.ModifyScore(mealObjects[index].GetComponent<MealScore>().GetScore());
-        //AudioManager.instance.Play("Cash");
-        //print("Matched with " + index);
-        //MealRotation(index);
-        //GetComponent<MyMeal>().ResetMeal();
-        //#endregion
+        #region Testing
+        ScoreManager.Instance.ModifyScore(mealObjects[index].GetComponent<MealScore>().GetScore());
+        AudioManager.instance.Play("Cash");
+        print("Matched with " + index);
+        MealRotation(index);
+        GetComponent<MyMeal>().ResetMeal();
+        #endregion
     }
 
     //Called when a target burger's Timer runs out
@@ -181,12 +181,15 @@ public class GameSceneManager : MonoBehaviour
     }
 
     //Iterates through all of the target meal game objects to the right of the destroyed/matched meal
+    //Stops coroutines running if another meal is matched to the left of the previous one before the previous meal has been replaced
     //Calls MoveObject on them to move them to the spawn point to the left of where they are currently
     //Cleans up the destroyed list items that were destroyed
     //Runs 'DisplayMeal' to add and instantiate a new target meal at the last/right-most spawn point
     private void MealRotation(int index)
     {
         currentIndex = index;
+        //print("Current " + currentIndex);
+        //print("Prev " + prevIndex);
         Destroy(mealObjects[index]);
         mealObjects.RemoveAt(index);
         targetMeals.RemoveAt(index);

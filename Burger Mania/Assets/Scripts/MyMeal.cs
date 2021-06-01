@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Control functionality for building a meal
+// Includes keyboard control and button clicks
 public class MyMeal : MonoBehaviour
 {
     public static bool cheeseOn = false;

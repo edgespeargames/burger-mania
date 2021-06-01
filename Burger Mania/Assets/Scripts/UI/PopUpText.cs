@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+// Script to attach to popuptext prefab which will animate and then be destroyed
 public class PopUpText : MonoBehaviour
 {
     public Text text;

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Navigation Manager Script to manage scene transitions and high score display
 public class NavigationScript : MonoBehaviour
 {
     [SerializeField] private GameObject highScoreCanvas;

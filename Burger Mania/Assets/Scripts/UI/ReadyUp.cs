@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +6,14 @@ public class ReadyUp : MonoBehaviour
 {
     [SerializeField] private GameObject sceneManager;
 
-    [SerializeField] private GameObject mainUI;
-    [SerializeField] private GameObject desktopUI;
+    [SerializeField] private GameObject mainUI; // UI that is used across all platforms
+    [SerializeField] private GameObject desktopUI; // UI that is used only for webgl and desktop
 
     [SerializeField] private Text playText;
 
     private void OnEnable()
     {
+        // Change text on play button depending on platform
         playText.text = "Play!";
 #if UNITY_STANDALONE || UNITY_WEBGL
         playText.text = "Play! \n (Enter)";
@@ -21,7 +21,8 @@ public class ReadyUp : MonoBehaviour
 
         mainUI.SetActive(true);
     }
-
+    
+    // Constantly check for enter key press to start game (if play button hasn't been clicked or tapped)
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -33,6 +34,7 @@ public class ReadyUp : MonoBehaviour
 
     }
 
+    // Begin the countdown before starting the game when play is clicked
     public void OnPlayClicked()
     {
         sceneManager.SetActive(true);
@@ -43,6 +45,7 @@ public class ReadyUp : MonoBehaviour
         StartCoroutine(Begin());
     }
 
+    // Countdown from 3 to 1 inside play button
     IEnumerator Begin()
     {
         for (int i = 3; i > 0; i--)

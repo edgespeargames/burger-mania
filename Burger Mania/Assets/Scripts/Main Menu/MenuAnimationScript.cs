@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+// Main controller script to choreograph the intro animation and sounds
 public class MenuAnimationScript : MonoBehaviour
 {
     [SerializeField] private GameObject sidePanel;

@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Class used to load/save/update the state of the desktopUI display
 public class ToggleInfoUI : MonoBehaviour
 {
     [SerializeField] private GameObject desktopUI;
 
     public bool displayUI;
 
+    //Singleton so that is only loads once
     #region Singleton
     private static ToggleInfoUI _instance;
 
@@ -24,7 +24,7 @@ public class ToggleInfoUI : MonoBehaviour
             _instance = this;
         }
     }
-    #endregion
+    #endregion 
 
     void Start()
     {

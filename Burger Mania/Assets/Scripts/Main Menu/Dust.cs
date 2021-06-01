@@ -1,15 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Destroy the gameobject half a second after it is enabled
 public class Dust : MonoBehaviour
 {
-
     void OnEnable()
     {
         StartCoroutine(Countdown());
     }
-
 
     IEnumerator Countdown()
     {

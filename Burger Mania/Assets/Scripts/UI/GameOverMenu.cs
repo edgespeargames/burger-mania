@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// Menu manager for the end of a shift
 public class GameOverMenu : MonoBehaviour
 {
     [SerializeField] GameObject readyUpCanvas;
@@ -29,6 +29,7 @@ public class GameOverMenu : MonoBehaviour
 #endif
     }
 
+    // Used to set the score once the shift has ended
     public void SetScore(int score)
     {
         totalScore = Mathf.Abs(score);
@@ -46,6 +47,7 @@ public class GameOverMenu : MonoBehaviour
         scoreText.color = Color.green;
     }
 
+    // If name and score are not empty/0 then add the info to the highscore list
     void AddHighScore()
     {
         if(nameText.text != "" && totalScore != 0)

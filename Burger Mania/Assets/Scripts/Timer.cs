@@ -17,24 +17,29 @@ public class Timer : MonoBehaviour
         time = GetComponentInParent<MealScore>().GetScore()*3; 
     }
 
+    // Countdown constantly
     void Update()
     {
         timeText.text = Mathf.Round(time).ToString();
 
+        // If time left is less than 3.5 change colour to red
         if (time < 3.5f)
             timeText.color = Color.red;
 
         time -= Time.deltaTime;
 
+        // If time is less than 0 destroy the parent gameobject (the target burger)
         if (time < 0.0f)
             Destroy(transform.parent.gameObject);
     }
 
+    // Destroy this game object (unused)
     public void DestroyTimer()
     {
         Destroy(this.gameObject);
     }
 
+    // Return the current value of time
     public float GetTime()
     {
         return time;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TargetMealCreator : MonoBehaviour
 {
@@ -9,22 +7,23 @@ public class TargetMealCreator : MonoBehaviour
 
     [SerializeField] private GameObject explosion;
 
-    public bool isQuitting = false;
+    public bool isQuitting = false; // Variable to check if we're quitting the application
 
-    [SerializeField] private GameObject timer;
-    private GameObject localTimer;
+    [SerializeField] private GameObject timer; // Timer gameobject
+    private GameObject localTimer; // Timer relevant to a specific game object when instantiated
 
 
-    [SerializeField] private GameObject popUpText;
+    [SerializeField] private GameObject popUpText; // Score text that pops up upon match
 
-    public int iD;
-
+    // Instantiate a timer and attach it to this instantiated targetburger gameobject
     private void Start()
     {
         localTimer = Instantiate(timer, transform.position, Quaternion.identity);
         localTimer.transform.parent = gameObject.transform;
     }
 
+    // Instantiate fries and attach to this instantiated targetburger gameobject.
+    // Add 2 to the potential score
     public void CreateFries()
     {
         GameObject fries = Instantiate(targetFries, transform.position, Quaternion.identity);
@@ -32,6 +31,8 @@ public class TargetMealCreator : MonoBehaviour
         GetComponent<MealScore>().AddToScore(2);
     }
 
+    // Instantiate drink and attach to this instantiated targetburger gameobject.
+    // Add 2 to the potential score
     public void CreateDrink()
     {
         GameObject drink = Instantiate(targetDrink, transform.position, Quaternion.identity);
@@ -39,6 +40,8 @@ public class TargetMealCreator : MonoBehaviour
         GetComponent<MealScore>().AddToScore(2);
     }
 
+    // To prevent the issue with explosion animations being played on the home screen after quitting/leaving the game scene while still in play
+    // Check to see if we are quitting
     void OnApplicationQuit()
     {
         isQuitting = true;
@@ -46,6 +49,7 @@ public class TargetMealCreator : MonoBehaviour
 
     private void OnDestroy()
     {
+        // If we haven't quit the application (Moved to a different scene etc)
         if (!isQuitting)
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
